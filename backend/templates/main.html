@@ -74,7 +74,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logoutt">
+                    <a class="nav-link" href="/logout">
                         <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
                     </a>
                 </li>
@@ -85,11 +85,11 @@
             <!-- Your main content goes here -->
         
             {% include "modal.html" %}
-            {% include "search.html" %}
+            {% comment %} {% include "search.html" %} {% endcomment %}
         
         <!-- home posts code -->
             <div>{% for pos in post %}
-                <div class="container" id="{{pos.id}}">
+                <div class="container" id="{{pos.id_post}}">
                     <div class="row">
                         <div class="col-md-6 mx-auto">
                             <div class="post-card"style="border: 1px solid black;margin: 50px;">
@@ -102,14 +102,14 @@
                                     <hr>
                                     <div class="d-flex justify-content-between" style="margin-bottom: 8px; margin-right:10px;">
             
-                                        <a href="/like-post/{{pos.id}}" class="btn btn-outline-primary">Like</a>
+                                        <a href="/like-post/{{pos.id_post}}" class="btn btn-outline-primary">Like</a>
             
-                                        {% if pos.no_of_likes == 0 %}
+                                        {% if pos.num_likes == 0 %}
                                         <p>0</p>
-                                        {% elif pos.no_of_likes == 1 %}
-                                        <p>Liked by {{pos.no_of_likes}} person</p>
+                                        {% elif pos.num_likes == 1 %}
+                                        <p>Liked by {{pos.num_likes}} person</p>
                                         {% else %}
-                                        <p>Liked by {{pos.no_of_likes}} people</p>
+                                        <p>Liked by {{pos.num_likes}} people</p>
                                         {% endif %}
                                     </div>
                                 </div>

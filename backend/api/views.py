@@ -2,10 +2,16 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Profile
+from .models import Post, Profile
 
 def home(request):
-    return HttpResponse("API it's working")
+    post = Post.objects.all().order_by('-created_at')
+    # profile = Profile.objects.get(user=request.user)
+    context = {
+        'post':post,
+        # 'profile':profile, 
+    }
+    return render(request, 'main.html', context)
 
 def signup(request):
     if request.method == 'POST':
@@ -55,3 +61,14 @@ def login(request):
 def logout(request):
     logout(request)
     return redirect('/login')
+
+def upload(request):
+    if request.method == 'POST':
+        user = request.user.username
+        image = request.Files.get('image_upload')
+        caption = request.POST['caption']
+        new_post = Post.objects.create(user=user, image=image, caption=caption)
+        new_post.save()
+        return redirect('/')
+    else: 
+        return redirect('/')
