@@ -5,10 +5,10 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Post, Profile
 
 def home(request):
-    post = Post.objects.all().order_by('-created_at')
+    posts = Post.objects.all().order_by('-created_at')
     # profile = Profile.objects.get(user=request.user)
     context = {
-        'post':post,
+        'posts':posts,
         # 'profile':profile, 
     }
     return render(request, 'main.html', context)

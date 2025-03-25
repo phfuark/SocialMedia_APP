@@ -88,28 +88,28 @@
             {% comment %} {% include "search.html" %} {% endcomment %}
         
         <!-- home posts code -->
-            <div>{% for pos in post %}
-                <div class="container" id="{{pos.id_post}}">
+            <div>{% for post in posts %}
+                <div class="container" id="{{post.id_post}}">
                     <div class="row">
                         <div class="col-md-6 mx-auto">
                             <div class="post-card"style="border: 1px solid black;margin: 50px;">
-                                <img src="{{pos.image.url}}" alt="Post Image" class="post-image"
-                                    style="height: 584px; width:468px; margin: 25px;">
+                                <img src="{{post.image.url}}" alt="Post Image" class="post-image"
+                                    style="height: 584px; width:468px; margin: 25px; object-fit: cover;">
                                 <div class="post-content"style="margin-left: 19px;">
-                                    <h5><a href="/profile/{{pos.user}}" style="text-decoration: none;">@{{pos.user}}</a></h5>
-                                    <p>{{pos.caption}}</p>
-                                    <p class="text-muted">{{pos.created_at}}</p>
+                                    <h5><a href="/profile/{{post.user}}" style="text-decoration: none;">@{{post.user}}</a></h5>
+                                    <p>{{post.caption}}</p>
+                                    <p class="text-muted">{{post.created_at}}</p>
                                     <hr>
                                     <div class="d-flex justify-content-between" style="margin-bottom: 8px; margin-right:10px;">
             
                                         <a href="/like-post/{{pos.id_post}}" class="btn btn-outline-primary">Like</a>
             
-                                        {% if pos.num_likes == 0 %}
+                                        {% if post.num_likes == 0 %}
                                         <p>0</p>
-                                        {% elif pos.num_likes == 1 %}
-                                        <p>Liked by {{pos.num_likes}} person</p>
+                                        {% elif post.num_likes == 1 %}
+                                        <p>Liked by {{post.num_likes}} person</p>
                                         {% else %}
-                                        <p>Liked by {{pos.num_likes}} people</p>
+                                        <p>Liked by {{post.num_likes}} people</p>
                                         {% endif %}
                                     </div>
                                 </div>
